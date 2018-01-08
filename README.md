@@ -8,6 +8,12 @@ npm install
 node index.js
 open browser to localhost:1337
 ```
+
+Credentials
+```
+username: foo
+password: bar
+```
 ## License
 
 Copyright (c) 2018 Daniel Coto
