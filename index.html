@@ -1,0 +1,59 @@
+<html>
+<head>
+<title> Websocket POC Example 
+</title>
+</head>
+<body>
+<h1> Check Console </h1>
+<button onclick="clickButtonWS()">Websocket</button>
+<button onclick="clickButtonREST()">REST</button>
+
+</body>
+<script>
+var client = new WebSocket("ws://localhost:1337/ws", "protocolOne");
+
+client.onerror = function() {
+    console.log('Connection Error');
+};
+
+client.onopen = function() {
+    console.log('WebSocket Client Connected');
+};
+
+client.onclose = function() {
+    console.log('echo-protocol Client Closed');
+};
+
+client.onmessage = function(e) {
+    if (typeof e.data === 'string') {
+        console.log("Received: '" + e.data + "'");
+    }
+};
+
+clickButtonWS = function() {
+    if(client.readyState === client.OPEN) {
+        client.send(JSON.stringify({
+            type: 'Websocket'
+        }));
+    }
+}
+
+clickButtonREST = function() {
+    fetch('rest', {
+        method: 'post',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        credentials: 'include',
+        body: '{}'
+      })
+      .then((response) => response.json())
+      .then(function (data) {
+        console.log('Request succeeded with JSON response', data);
+      })
+      .catch(function (error) {
+        console.log('Request failed', error);
+      });
+}
+</script>
+</html>
