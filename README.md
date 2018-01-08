@@ -2,6 +2,12 @@
 
 Basic sandbox using Hapi 16.x and Websockets
 
+## Installing and Running
+```
+npm install
+node index.js
+open browser to localhost:1337
+```
 ## License
 
 Copyright <2018> <Daniel Coto>
